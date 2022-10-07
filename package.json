@@ -1,0 +1,47 @@
+{
+  "name": "bf",
+  "version": "0.0.1",
+  "description": "bf is a translation tool, based on baidu translate api, that used in command line",
+  "main": "lib/index.js",
+  "type": "module",
+  "bin": {
+    "bf": "lib/index.js"
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup"
+  },
+  "lint-staged": {
+    "./*.{js,ts}": [
+      "eslint --config .eslintrc"
+    ]
+  },
+  "keywords": [
+    "translate",
+    "fanyi",
+    "command line"
+  ],
+  "author": "CiroLee<ciromail@126.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^17.1.0",
+    "@types/md5": "^2.3.2",
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^18.8.3",
+    "@types/yargs": "^17.0.13",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "commitlint": "^17.1.2",
+    "eslint": "^8.24.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "tsup": "^6.2.3",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "chalk": "^5.1.0",
+    "got": "^12.5.1",
+    "md5": "^2.3.0",
+    "yargs": "^17.6.0"
+  }
+}

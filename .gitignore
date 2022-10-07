@@ -1,0 +1,6 @@
+dist
+lib
+node_modules
+coverage
+.Ds_Store
+secrets.ts
