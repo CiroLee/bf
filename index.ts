@@ -6,8 +6,9 @@ import md5 from 'md5';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import secrets from './secrets';
+import pkg from './package.json';
 
-const argv = yargs(hideBin(process.argv)).help(false);
+const argv = yargs(hideBin(process.argv)).help(false).version(false);
 const parsedArgv = argv.parseSync();
 const query = parsedArgv._;
 const spinner = ora({ spinner: 'line' });
@@ -97,7 +98,7 @@ async function getTranslation(props: ITransProps) {
 }
 
 (function () {
-  const { v, h, help, l, language } = parsedArgv;
+  const { v, version, h, help, l, language } = parsedArgv;
   const queryString = query.join(' ').trim();
 
   if (queryString.length > 200) {
@@ -109,8 +110,9 @@ async function getTranslation(props: ITransProps) {
   const from = (parsedArgv.from as string) || (isZhSource ? 'zh' : 'auto');
   const to = (parsedArgv.to as string) || (from === 'zh' ? 'en' : 'auto');
 
-  if (v) {
-    argv.showVersion();
+  if (v || version) {
+    console.log(pkg.version);
+
     process.exit(0);
   }
   if (l || language) {

@@ -1,6 +1,6 @@
 {
   "name": "bf-translate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "bf is a translation tool, based on baidu translate api, that used in command line",
   "main": "lib/index.mjs",
   "bin": {
