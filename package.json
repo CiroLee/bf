@@ -17,8 +17,14 @@
   },
   "keywords": [
     "translate",
-    "fanyi",
-    "command line"
+    "fanyi"
+  ],
+  "homepage": "https://github.com/CiroLee/bf",
+  "bugs": {
+    "url": "https://github.com/CiroLee/bf/issues"
+  },
+  "files": [
+    "lib"
   ],
   "author": "CiroLee<ciromail@126.com>",
   "license": "MIT",
