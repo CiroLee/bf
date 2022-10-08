@@ -18,7 +18,7 @@
 # Install
 
 ```shell
-npm install bf -g
+npm install bf-translate -g
 ```
 
 # Usage
