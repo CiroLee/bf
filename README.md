@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/logo.svg" style="width: 320px" alt="logo" />
+  <img src="https://img1.imgtp.com/2022/10/08/NqAiyAXQ.svg" style="width: 320px" alt="logo" />
   <h1>bf</h1>
 </div>
 
@@ -9,7 +9,7 @@
 <br >
 
 <div align="center">
-  <img src="./assets/demo.png"alt="logo" />
+  <img src="https://img1.imgtp.com/2022/10/08/0NG97iSn.png" alt="logo" />
 </div>
 
 <br >
