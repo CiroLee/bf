@@ -47,6 +47,6 @@ bf hello, 吃饭了吗？
 - Hello, have you eaten yet?
 ```
 
-Also, you can use `cases` param use convert the result via the case you input. now it supports `c(camelCase)`, `p(PascalCase)`, `s(snake_case)` and `k(kebab-case)`, if you want to output all cases you can just use `all` for the case.
+Also, you can use `cases` param to convert the result via the case you input. Now it supports `c(camelCase)`, `p(PascalCase)`, `s(snake_case)` and `k(kebab-case)`, if you want to output all cases you can just use `all` for the case.
 
 ![demo](./assets/bf-cases-2.jpg)
