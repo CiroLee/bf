@@ -6,9 +6,10 @@ import md5 from 'md5';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import secrets from './secrets';
+import * as strCase from './case';
 import pkg from './package.json';
 
-const argv = yargs(hideBin(process.argv)).help(false).version(false);
+const argv = yargs(hideBin(process.argv)).help(false).version(false).array('cases');
 const parsedArgv = argv.parseSync();
 const query = parsedArgv._;
 const spinner = ora({ spinner: 'line' });
@@ -16,11 +17,12 @@ const spinner = ora({ spinner: 'line' });
 function showHelper() {
   const helps = `Usage bf [options] <query>
 
--v,--version        output the version number
--h,--help           show help info
--lang,--language    output the list of supported languages
---from <lang>       the source language
---to <lang>         the target language
+-v,--version              output the version number
+-h,--help                 show help info
+-lang,--language          output the list of supported languages
+--from [lang]             the source language
+--to [lang]               the target language
+--cases [c|p|k|s|all]     convert the result using the cases 
   `;
 
   console.log(helps);
@@ -51,6 +53,7 @@ interface ITransProps {
   q: string;
   from?: string;
   to?: string;
+  cases?: string[];
 }
 interface ITransResult {
   from: string;
@@ -62,10 +65,32 @@ interface ITransResult {
   error_code?: string;
   error_msg?: string;
 }
-function renderTransResult(result: ITransResult) {
+
+const caseMap = [
+  { key: 'c', full: 'cameCase', cb: strCase.camelCase },
+  { key: 'p', full: 'PascalCase', cb: strCase.pascalCase },
+  { key: 's', full: 'snake_case', cb: strCase.snakeCase },
+  { key: 'k', full: 'kebab-case', cb: strCase.kebabCase },
+];
+function renderTransResult(result: ITransResult, cases?: string[]) {
   const options = `- from: ${result.from} to: ${result.to}`;
+  const dst = result.trans_result[0].dst;
+  let dstArr: string[] = [];
   console.log(chalk.gray(options));
-  console.log(chalk.bold.greenBright(`- ${result.trans_result[0].dst}`));
+
+  if (Array.isArray(cases) && cases.length === 1 && cases[0] === 'all') {
+    dstArr = caseMap.map((el) => `${chalk.gray(`- (${el.full})`)} ${chalk.bold.greenBright(el.cb(dst))}`);
+  } else if (Array.isArray(cases) && !cases.includes('all')) {
+    dstArr = caseMap
+      .filter((item) => cases?.includes(item.key))
+      .map((el) => `${chalk.gray(`- (${el.full})`)} ${chalk.bold.greenBright(el.cb(dst))}`);
+  }
+  if (dstArr.length) {
+    const str = dstArr.join('\n');
+    console.log(str);
+  } else {
+    console.log(chalk.bold.greenBright(`- ${dst}`));
+  }
 }
 async function getTranslation(props: ITransProps) {
   try {
@@ -90,7 +115,7 @@ async function getTranslation(props: ITransProps) {
       throw new Error(result.error_msg);
     }
     spinner.stop();
-    renderTransResult(result);
+    renderTransResult(result, props.cases);
   } catch (error) {
     console.error(error);
     spinner.stop();
@@ -98,7 +123,7 @@ async function getTranslation(props: ITransProps) {
 }
 
 (function () {
-  const { v, version, h, help, l, language } = parsedArgv;
+  const { v, version, h, help, l, language, cases } = parsedArgv;
   const queryString = query.join(' ').trim();
 
   if (queryString.length > 200) {
@@ -112,7 +137,6 @@ async function getTranslation(props: ITransProps) {
 
   if (v || version) {
     console.log(pkg.version);
-
     process.exit(0);
   }
   if (l || language) {
@@ -123,9 +147,11 @@ async function getTranslation(props: ITransProps) {
     showHelper();
     process.exit(0);
   }
+
   getTranslation({
     q: queryString,
     from,
     to,
-  });
+    cases,
+  } as ITransProps);
 })();
