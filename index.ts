@@ -67,7 +67,7 @@ interface ITransResult {
 }
 
 const caseMap = [
-  { key: 'c', full: 'cameCase', cb: strCase.camelCase },
+  { key: 'c', full: 'camelCase', cb: strCase.camelCase },
   { key: 'p', full: 'PascalCase', cb: strCase.pascalCase },
   { key: 's', full: 'snake_case', cb: strCase.snakeCase },
   { key: 'k', full: 'kebab-case', cb: strCase.kebabCase },

@@ -1,6 +1,6 @@
 {
   "name": "bf-translate",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "bf is a translation tool, based on baidu translate api, that used in command line",
   "main": "lib/index.mjs",
   "bin": {
@@ -32,22 +32,22 @@
     "@commitlint/config-conventional": "^17.4.4",
     "@types/md5": "^2.3.2",
     "@types/minimist": "^1.2.2",
-    "@types/node": "^18.14.6",
-    "@types/yargs": "^17.0.22",
-    "@typescript-eslint/eslint-plugin": "^5.54.1",
-    "@typescript-eslint/parser": "^5.54.1",
-    "commitlint": "^17.4.4",
-    "eslint": "^8.35.0",
+    "@types/node": "^18.15.8",
+    "@types/yargs": "^17.0.23",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "commitlint": "^17.5.0",
+    "eslint": "^8.36.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.2",
-    "tsup": "^6.6.3",
-    "typescript": "^4.9.5"
+    "lint-staged": "^13.2.0",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.2"
   },
   "dependencies": {
     "chalk": "^5.2.0",
     "got": "^12.6.0",
     "md5": "^2.3.0",
-    "ora": "^6.1.2",
+    "ora": "^6.3.0",
     "yargs": "^17.7.1"
   }
 }
